@@ -16,8 +16,7 @@ class Peserta extends Model
         'no_handphone',
         'province_id',
         'regencie_id',
-        'pengurus',
-        'lama_seminar',
+        'jenis_seminar',
         'hari_seminar',
         'kode_unik',
         'is_verified'

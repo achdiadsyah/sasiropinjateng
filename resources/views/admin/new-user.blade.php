@@ -24,8 +24,9 @@
                                     <td>Nama</td>
                                     <td>Email</td>
                                     <td>No Telepon</td>
-                                    <td>Asal Pengda</td>
-                                    <td>Asal Pengcab</td>
+                                    <td>Asal PENGDA</td>
+                                    <td>Asal PENGCAB</td>
+                                    <td>Total Bayar</td>
                                     <td>Aksi</td>
                                 </tr>
                             </thead>
@@ -38,6 +39,7 @@
                                         <td>{{$item->no_handphone}}</td>
                                         <td>{{$item->province->name}}</td>
                                         <td>{{$item->regencie->name}}</td>
+                                        <td>Rp. 250.{{$item->kode_unik}}</td>
                                         <td>
                                             <a href="{{route('admin.new-user')}}?id={{$item->id}}" class="btn btn-sm btn-danger">Selengkapnya</a>
                                         </td>

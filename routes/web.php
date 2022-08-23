@@ -26,5 +26,7 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::post('verify', [App\Http\Controllers\AdminController::class, 'doVerify'])->name('verify');
 
         Route::get('verified-user', [App\Http\Controllers\AdminController::class, 'verifiedUser'])->name('verified-user');
+
+        Route::get('download-data', [App\Http\Controllers\AdminController::class, 'downloadAll'])->name('download-data');
     });
 });

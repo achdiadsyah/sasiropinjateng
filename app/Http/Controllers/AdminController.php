@@ -46,7 +46,11 @@ class AdminController extends Controller
 
     public function dashboard(Request $request)
     {
-        return view('admin.dashboard');
+        $data = [
+            'count_new' => Peserta::where('is_verified', 0)->count(),
+            'count_verified' => Peserta::where('is_verified', 1)->count(),
+        ];
+        return view('admin.dashboard', $data);
     }
 
     public function newUser(Request $request)
@@ -131,5 +135,13 @@ class AdminController extends Controller
             return view('admin.verify-user', $data);
         }
         
+    }
+
+    public function downloadAll(Request $request)
+    {
+        $data = [
+            'users' => Peserta::all()
+        ];
+        return view('admin.excel-export', $data);
     }
 }

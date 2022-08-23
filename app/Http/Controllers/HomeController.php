@@ -42,8 +42,7 @@ class HomeController extends Controller
             'no_handphone'  => $request->no_handphone,  
             'province_id'  => $request->province_id,  
             'regencie_id'  => $request->regencie_id,  
-            'pengurus'  => $request->pengurus,  
-            'lama_seminar'  => $request->lama_seminar,  
+            'jenis_seminar'  => $request->jenis_seminar,  
             'hari_seminar'  => $request->hari_seminar,
             'kode_unik'  => $kode_unik,
             'is_verified'   => 0

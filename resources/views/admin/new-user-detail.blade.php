@@ -37,32 +37,30 @@
                         </div>
                         <div class="col-6">
                             <div class="form-group">
-                              <label>Kepengurusan</label>
-                              <input type="text" value="{{strtoupper($user->pengurus)}}" class="form-control" disabled>
-                            </div>
-                            <div class="form-group">
                               <label>Jenis Seminar</label>
-                              <input type="text" value="{{$user->lama_seminar}} Hari" class="form-control" disabled>
+                              <input type="text" value="{{strtoupper($user->jenis_seminar)}}" class="form-control" disabled>
                             </div>
                             <div class="form-group">
                               <label>Jadwal Seminar</label>
-                              <input type="text" value="{{$user->hari_seminar ? $user->hari_seminar . " Sepetember 2022" : "17 dan 18 September 2022"}}" class="form-control" disabled>
+                              <input type="text" value="{{$user->hari_seminar}}" class="form-control" disabled>
                             </div>
                             <div class="form-group">
                               <label>Kode Unik</label>
                               <input type="text" value="{{$user->kode_unik}}" class="form-control" disabled>
                             </div>
 
+                            <div class="form-group">
+                                <label>Jumlah Bayar</label>
+                                <input type="text" value="Rp.250.{{$user->kode_unik}}" class="form-control" disabled>
+                            </div>
                             <a class="btn btn-danger" href="#" data-toggle="modal" data-target="#modalDelete">
                                 <i class="fas fa-trash fa-sm fa-fw mr-2 text-gray-400"></i>
                                 Delete User
                             </a>
-
                             <a class="btn btn-success" href="#" data-toggle="modal" data-target="#modalVerify">
                                 <i class="fas fa-check fa-sm fa-fw mr-2 text-gray-400"></i>
                                 Verify User
                             </a>
-
                         </div>
                     </div>
                 </div>
@@ -72,7 +70,7 @@
 
     <div class="modal fade" id="modalDelete" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
-            <form id="logout-form" action="{{ route('admin.delete') }}" method="POST">
+            <form id="delete-form" action="{{ route('admin.delete') }}" method="POST">
                 @csrf
                 <input type="hidden" value="{{$user->id}}" name="id" required>
                 <div class="modal-content">
@@ -94,7 +92,7 @@
 
     <div class="modal fade" id="modalVerify" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
-            <form id="logout-form" action="{{ route('admin.verify') }}" method="POST">
+            <form id="verify-form" action="{{ route('admin.verify') }}" method="POST">
                 @csrf
                 <input type="hidden" value="{{$user->id}}" name="id" required>
                 <div class="modal-content">
@@ -106,8 +104,8 @@
                     </div>
                     <div class="modal-body">Select "Verify" below if you are ready to verify a payment from this user.</div>
                     <div class="modal-footer">
-                        <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                        <button class="btn btn-success" type="submit">Verify</button>
+                        <button class="btn btn-secondary" type="button" data-dismiss="modal" name="btnCancelVerify">Cancel</button>
+                        <button class="btn btn-success" type="submit" onClick="$('#verify-form').submit(); this.disabled = true;  btnCancelVerify.disabled = true; this.innerText ='Trying to verify...';">Verify</button>
                     </div>
                 </div>
             </form>

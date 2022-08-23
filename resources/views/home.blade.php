@@ -4,10 +4,10 @@
 <div class="row">
     <div class="col-md-7">
         <div class="card">
-            <form action="{{route('register-peserta')}}" method="post" onsubmit="myBtn.disabled = true; myBtn.innerText ='Submitting Data...'; return true;">
+            <form action="{{route('register-peserta')}}" method="post" onsubmit="myBtn.disabled = true; myBtn.innerText ='Sedang Mengirim...'; return true;">
                 @csrf
                 <div class="card-header">
-                    <h6 class="m-0 font-weight-bold text-primary">Daftar sebagai peserta seminar</h6>
+                    <h5 class="m-0 font-weight-bold text-primary">Daftar sebagai peserta seminar</h5>
                 </div>
                 <div class="card-body">
                     @if (session('status'))
@@ -19,7 +19,7 @@
                         </div>
                         @if(session('status') !== "warning")
                         <div class="text-center">
-                            <button class="btn btn-primary btn-sm" type="button" data-toggle="modal" data-target="#modalPembayaran">Lihat Cara Pembayaran</button>
+                            <button class="btn btn-primary btn-lg" type="button" data-toggle="modal" data-target="#modalPembayaran">Lihat Cara Pembayaran</button>
                         </div>
                         @endif
                     @else
@@ -35,60 +35,50 @@
 
                     <div class="form-group">
                         <label>Nomor STR</label>
-                        <input type="text" name="nomor_str" class="form-control" required>
+                        <input type="number" name="nomor_str" class="form-control" maxlength="17" placeholder="xxxxxxxxx-xxxxxxx" required>
                     </div>
 
                     <div class="form-group">
                         <label>Nomor Handphone</label>
-                        <input type="number" name="no_handphone" class="form-control" placeholder="0812xxxxxxx" required>
-                    </div>
-
-                    <div class="form-group">
-                        <label>Pilih Pengurus</label>
-                        <select class="form-control" name="pengurus" required>
-                            <option value="">--Silahkan Pilih--</option>
-                            <option value="pengda">PENGDA</option>
-                            <option value="pengcap">PENGCAP</option>
-                        </select>
+                        <input type="number" name="no_handphone" class="form-control" minlength="10" maxlength="14" placeholder="0812xxxxxxx" required>
                     </div>
 
                     <div class="form-group">
                         <label>Pilih Jenis Seminar</label>
-                        <select class="form-control" name="lama_seminar" id="lama_seminar" required>
+                        <select class="form-control" name="jenis_seminar" id="jenis_seminar" required>
                             <option value="">--Silahkan Pilih--</option>
-                            <option value="1">1 Hari</option>
-                            <option value="2">2 Hari</option>
+                            <option value="online">ONLINE (Zoom Meeting)</option>
+                            <option value="offline">OFFLINE (UTC Hotel Semarang)</option>
                         </select>
                     </div>
 
                     <div class="form-group d-none" id="group_hari_seminar">
                         <label>Pilih hari Seminar</label>
                         <select class="form-control" name="hari_seminar" id="hari_seminar">
-                            <option value="">--Silahkan Pilih--</option>
-                            <option value="17">Sabtu, 17 September 2022</option>
-                            <option value="18">Minggu, 18 September 2022</option>
+                            
                         </select>
                     </div>
 
                     <div class="form-group">
-                        <label>Asal Pengda</label>
+                        <label>ASAL PENGDA</label>
                         <select class="form-control" name="province_id" id="provinsi" required>
 
                         </select>
                     </div>
 
                     <div class="form-group d-none" id="group_kabupaten">
-                        <label>Asal Pengcab</label>
+                        <label>ASAL PENGCAP</label>
                         <select class="form-control" name="regencie_id" id="kabupaten" required>
 
                         </select>
                     </div>
                     @endif
                 </div>
+                @if (!session('status'))
                 <div class="card-footer">
-                    <a href="{{url('/')}}" class="btn btn-danger">Reset</a>
-                    <button type="submit" class="btn btn-primary" name="myBtn">Submit Data</button>
+                    <button type="submit" class="btn btn-primary btn-lg" name="myBtn">Kirim Pendaftaran</button>
                 </div>
+                @endif
             </form>
         </div>
     </div>
@@ -96,7 +86,7 @@
     <div class="col-md-5">
         <div class="card">
             <div class="card-header">
-                <h6 class="m-0 font-weight-bold text-primary">Informasi</h6>
+                <h5 class="m-0 font-weight-bold text-primary">Informasi</h5>
             </div>
             <div class="card-body">
                 <img src="{{asset('assets/img/Flyer.png')}}" alt="" width="100%">
@@ -112,7 +102,7 @@
                             <li>Berita Transfer : IROPIN-[3 Digit Kode Unik]</li>
                         </ul>
                     </li>
-                    <li>Anda akan menerima email balasan dari kami jika pembayaran anda berhasil kami konfirmasi</li>
+                    <li>Anda akan menerima konfirmasi pembayaran via whatsapp dan email setelah pembayaran berhasil.</li>
                     <li>Jika tidak menerima email balasan dari kami 1 x 24 Jam, silahkan hubungi contact person kami di :
                         <ul>
                             <li>Contact Person 1</li>
@@ -190,14 +180,25 @@
         })
     });
 
-    $( "#lama_seminar" ).change(function() {
-        var lama = $(this).val();
-        if(lama == '1'){
-            $('#group_hari_seminar').removeClass('d-none');
+    $( "#jenis_seminar" ).change(function() {
+        var jenis = $(this).val();
+        var options = "";
+        if(jenis == 'online'){
+            options = ` <option value="">--Silahkan Pilih--</option>
+                        <option value="2 Hari (4 SKP)">2 Hari (4 SKP)</option>
+                        <option value="1 Hari (Sabtu, 2 SKP)">1 Hari (Sabtu, 2 SKP)</option>
+                        <option value="1 Hari (Minggu, 2 SKP)">1 Hari (Minggu, 2 SKP)</option>
+                        `;
+            
         } else {
-            $('#group_hari_seminar').addClass('d-none');
-            $('#hari_seminar').val('');
+            options = ` <option value="">--Silahkan Pilih--</option>
+                        <option value="2 Hari (8 SKP)">2 Hari (8 SKP)</option>
+                        <option value="1 Hari (Sabtu, 4 SKP)">1 Hari (Sabtu, 4 SKP)</option>
+                        <option value="1 Hari (Minggu, 4 SKP)">1 Hari (Minggu, 4 SKP)</option>
+                        `;
         }
+        $('#group_hari_seminar').removeClass('d-none');
+        $('#hari_seminar').html(options);
     });
 
 </script>

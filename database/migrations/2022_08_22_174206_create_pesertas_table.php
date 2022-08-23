@@ -23,9 +23,8 @@ return new class extends Migration
             $table->foreign('province_id')->references('id')->on('provinces');
             $table->unsignedBigInteger('regencie_id');
             $table->foreign('regencie_id')->references('id')->on('regencies');
-            $table->string('pengurus');
-            $table->string('lama_seminar');
-            $table->string('hari_seminar')->nullable();
+            $table->string('jenis_seminar');
+            $table->string('hari_seminar');
             $table->string('kode_unik')->unique();
             $table->string('is_verified');
             $table->timestamps();
