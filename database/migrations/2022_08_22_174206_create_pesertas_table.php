@@ -21,7 +21,7 @@ return new class extends Migration
             $table->string('no_handphone');
             $table->unsignedBigInteger('province_id');
             $table->foreign('province_id')->references('id')->on('provinces');
-            $table->unsignedBigInteger('regencie_id');
+            $table->unsignedBigInteger('regencie_id')->nullable();
             $table->foreign('regencie_id')->references('id')->on('regencies');
             $table->string('jenis_seminar');
             $table->string('hari_seminar');

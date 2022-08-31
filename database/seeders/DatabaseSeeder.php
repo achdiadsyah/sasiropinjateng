@@ -16,6 +16,11 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
+        $this->call([
+            ProvinceSeeder::class,
+            CitySeeder::class,
+        ]);
+        
         User::create([
             'email'                 => 'admin@iropinjateng.com',
             'name'                  => 'Administrator',

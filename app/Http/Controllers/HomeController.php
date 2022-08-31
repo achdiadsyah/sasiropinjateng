@@ -48,10 +48,14 @@ class HomeController extends Controller
             'is_verified'   => 0
         ]);
 
+        $hari = substr($request->hari_seminar,0,1);
+        $biaya = '300000' * $hari + $kode_unik;
+
         $mailData = [
             'nama'  => $request->nama,
             'message' => 'Pendaftaran anda berhasil, silahkan lanjutkan pembayaran dengan cara sebagai berikut:',
             'kode_unik' => $kode_unik,
+            'biaya' => $biaya,
         ];
 
         $mailAction = Mail::to($request->email)->send(new NotifyPesertaBerhasil($mailData));
@@ -61,6 +65,7 @@ class HomeController extends Controller
                 'status'    => 'success',
                 'message' => 'Berhasil Mendaftar, periksa email anda untuk melihat tata cara pembayaran',
                 'kode_unik' => $kode_unik,
+                'biaya' => "Rp. ".number_format($biaya),
             ]);
         } else {
             return redirect()->back()->with([

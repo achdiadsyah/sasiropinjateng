@@ -228,10 +228,10 @@ table, td { color: #000000; } </style>
             <ol>
                 <li>Lakukan Transfer ke rekening :
                     <ul>
-                        <li>Rekening Bank BCA</li>
-                        <li>A/N : __________________</li>
-                        <li>No Rekening : __________________</li>
-                        <li>Total : Rp. 250.{{$mailData['kode_unik']}}</li>
+                        <li>Rekening <b>Bank BCA</b></li>
+                        <li>A/N : IDA FARIDA</li>
+                        <li>No Rekening : 8030665351</li>
+                        <li>Total : Rp. {{number_format($mailData['biaya'])}}</li>
                         <li>Berita Transfer : IROPIN-{{$mailData['kode_unik']}}</li>
                     </ul>
                 </li>

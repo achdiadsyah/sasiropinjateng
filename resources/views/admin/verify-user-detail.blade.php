@@ -32,7 +32,7 @@
                           </div>
                           <div class="form-group">
                             <label>Asal Pengcab</label>
-                            <input type="text" value="{{$user->regencie->name}}" class="form-control" disabled>
+                            <input type="text" value="{{$user->regencie ? $user->regencie->name : '-'}}" class="form-control" disabled>
                           </div>
                       </div>
                       <div class="col-6">
@@ -48,10 +48,13 @@
                             <label>Kode Unik</label>
                             <input type="text" value="{{$user->kode_unik}}" class="form-control" disabled>
                           </div>
-
+                          @php
+                              $hari = substr($user->hari_seminar,0,1);
+                              $biaya = '300000' * $hari + $user->kode_unik;
+                          @endphp
                           <div class="form-group">
                               <label>Jumlah Bayar</label>
-                              <input type="text" value="Rp.250.{{$user->kode_unik}}" class="form-control" disabled>
+                              <input type="text" value="Rp. {{number_format($biaya)}}" class="form-control" disabled>
                           </div>
 
                         </div>

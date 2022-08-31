@@ -55,6 +55,10 @@ tr:nth-child(even) {
     <tbody>
         <?php $i = 1 ?>
         @foreach ($users as $item)
+            @php
+                $hari = substr($item->hari_seminar,0,1);
+                $biaya = '300000' * $hari + $item->kode_unik;
+            @endphp
             <tr>
                 <td>{{$i}}</td>
                 <td>{{$item->nama}}</td>
@@ -62,11 +66,11 @@ tr:nth-child(even) {
                 <td>{{$item->nomor_str}}</td>
                 <td>{{$item->no_handphone}}</td>
                 <td>{{$item->province->name}}</td>
-                <td>{{$item->regencie->name}}</td>
+                <td>{{$item->regencie ? $item->regencie->name : '-'}}</td>
                 <td>{{strtoupper($item->jenis_seminar)}}</td>
                 <td>{{$item->hari_seminar}}</td>
                 <td>{{$item->kode_unik}}</td>
-                <td>Rp.250.{{$item->kode_unik}}</td>
+                <td>Rp. {{number_format($biaya)}}</td>
                 @if($item->is_verified == 1)
                 <td>SUDAH BAYAR</td>
                 @else

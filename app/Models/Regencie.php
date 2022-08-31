@@ -8,4 +8,10 @@ use Illuminate\Database\Eloquent\Model;
 class Regencie extends Model
 {
     use HasFactory;
+
+    protected $fillable = [
+        'id',
+        'province_id',
+        'name'
+    ];
 }
