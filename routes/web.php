@@ -34,8 +34,7 @@ Route::prefix('admin')->name('admin.')->group(function () {
     });
 });
 
-Route::get('/link', function () {        
-    $target = '/home/sasn2683/public_html/storage/app/public';
-    $shortcut = '/home/sasn2683/public_html/public/storage';
-    symlink($target, $shortcut);
- });
+Route::get('link', function () {
+    Artisan::call('storage:link');
+    return "Done";
+});
