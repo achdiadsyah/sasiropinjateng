@@ -46,11 +46,18 @@
                                 </div>
                                 <div class="form-group">
                                     <label>Biaya / Hari</label>
-                                    <input type="text" name="biaya" class="form-control" value="{{$config->biaya}}">
+                                    <div class="input-group mb-3">
+                                        <span class="input-group-text" id="basic-addon1">Rp. </span>
+                                        <input type="text" name="biaya" class="form-control" value="{{$config->biaya}}">
+                                        <span class="input-group-text" id="basic-addon1">per Hari</span>
+                                    </div>
                                 </div>
                                 <div class="form-group">
                                     <label>Contact Person</label>
-                                    <input type="text" name="contact_person" class="form-control" value="{{$config->contact_person}}">
+                                    <div class="input-group mb-3">
+                                        <span class="input-group-text" id="basic-addon1">https://wa.me/</span>
+                                        <input type="number" class="form-control" name="contact_person" placeholder="62xxxx" value="{{$config->contact_person}}">
+                                    </div>
                                 </div>
                             </div>
                             <div class="col-6">
