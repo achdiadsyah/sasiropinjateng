@@ -34,8 +34,9 @@
                             <tbody>
                                 @foreach ($users as $item)
                                     @php
+                                        $config = App\Models\AppConfig::first();
                                         $hari = substr($item->hari_seminar,0,1);
-                                        $biaya = '300000' * $hari + $item->kode_unik;
+                                        $biaya = $config->biaya * $hari + $item->kode_unik;
                                     @endphp
                                     <tr>
                                         <td>#</td>

@@ -56,8 +56,9 @@ tr:nth-child(even) {
         <?php $i = 1 ?>
         @foreach ($users as $item)
             @php
+                $config = App\Models\AppConfig::first();
                 $hari = substr($item->hari_seminar,0,1);
-                $biaya = '300000' * $hari + $item->kode_unik;
+                $biaya = $config->harga * $hari + $item->kode_unik;
             @endphp
             <tr>
                 <td>{{$i}}</td>

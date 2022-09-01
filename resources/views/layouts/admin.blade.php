@@ -35,16 +35,23 @@
                 </a>
             </li>
 
+            <li class="nav-item {{ (request()->is('admin/app-config')) ? 'active' : '' }}">
+                <a class="nav-link" href="{{route('admin.app-config')}}">
+                    <i class="fas fa-fw fa-cog"></i>
+                    <span>App Config</span>
+                </a>
+            </li>
+
             <li class="nav-item {{ (request()->is('admin/new-user')) ? 'active' : '' }}">
                 <a class="nav-link" href="{{route('admin.new-user')}}">
-                    <i class="fas fa-fw fa-tachometer-alt"></i>
+                    <i class="fas fa-fw fa-users"></i>
                     <span>New User</span>
                 </a>
             </li>
 
             <li class="nav-item {{ (request()->is('admin/verified-user')) ? 'active' : '' }}">
                 <a class="nav-link" href="{{route('admin.verified-user')}}">
-                    <i class="fas fa-fw fa-tachometer-alt"></i>
+                    <i class="fas fa-fw fa-check"></i>
                     <span>Verified User</span>
                 </a>
             </li>
@@ -53,7 +60,7 @@
 
             <li class="nav-item {{ (request()->is('admin/download-data')) ? 'active' : '' }}">
                 <a class="nav-link" href="{{route('admin.download-data')}}">
-                    <i class="fas fa-fw fa-tachometer-alt"></i>
+                    <i class="fas fa-file-excel"></i>
                     <span>Download To Excel</span>
                 </a>
             </li>

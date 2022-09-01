@@ -28,5 +28,8 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::get('verified-user', [App\Http\Controllers\AdminController::class, 'verifiedUser'])->name('verified-user');
 
         Route::get('download-data', [App\Http\Controllers\AdminController::class, 'downloadAll'])->name('download-data');
+
+        Route::get('app-config', [App\Http\Controllers\AdminController::class, 'appConfig'])->name('app-config');
+        Route::post('app-config-update', [App\Http\Controllers\AdminController::class, 'appConfigUpdate'])->name('app-config-update');
     });
 });

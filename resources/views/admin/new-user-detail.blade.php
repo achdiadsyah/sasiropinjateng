@@ -49,8 +49,9 @@
                               <input type="text" value="{{$user->kode_unik}}" class="form-control" disabled>
                             </div>
                             @php
+                                $config = App\Models\AppConfig::first();
                                 $hari = substr($user->hari_seminar,0,1);
-                                $biaya = '300000' * $hari + $user->kode_unik;
+                                $biaya = $config->biaya * $hari + $user->kode_unik;
                             @endphp
                             <div class="form-group">
                                 <label>Jumlah Bayar</label>

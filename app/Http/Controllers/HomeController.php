@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Province;
 use App\Models\Regencie;
 use App\Models\Peserta;
+use App\Models\AppConfig;
 
 use Mail;
 use App\Mail\NotifyPesertaBerhasil;
@@ -38,7 +39,7 @@ class HomeController extends Controller
         $action = Peserta::create([
             'nama'  => $request->nama,  
             'email'  => $request->email,  
-            'nomor_str'  => $request->nomor_str,  
+            'nomor_str'  => $request->nomor_str9."-".$request->nomor_str7,  
             'no_handphone'  => $request->no_handphone,  
             'province_id'  => $request->province_id,  
             'regencie_id'  => $request->regencie_id,  
@@ -48,8 +49,9 @@ class HomeController extends Controller
             'is_verified'   => 0
         ]);
 
+        $harga = AppConfig::first()->biaya;
         $hari = substr($request->hari_seminar,0,1);
-        $biaya = '300000' * $hari + $kode_unik;
+        $biaya = $harga * $hari + $kode_unik;
 
         $mailData = [
             'nama'  => $request->nama,

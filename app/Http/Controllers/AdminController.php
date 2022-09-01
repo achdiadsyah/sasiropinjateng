@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use App\Models\Peserta;
+use App\Models\AppConfig;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -143,5 +144,46 @@ class AdminController extends Controller
             'users' => Peserta::all()
         ];
         return view('admin.excel-export', $data);
+    }
+
+    public function appConfig(Request $request)
+    {
+        return view('admin.app-config');
+    }
+
+    public function appConfigUpdate(Request $request)
+    {
+        $request->validate([
+            'gambar' => 'required|image|mimes:jpeg,png,jpg|max:2048',
+        ]);
+
+        $imageName = time().'.'.$request->gambar->extension();  
+     
+        $request->gambar->move(public_path('images'), $imageName);
+        
+        if(AppConfig::first()->gambar) {
+            unlink("images/".AppConfig::first()->gambar);
+        }
+        
+        $update = AppConfig::where('id', '1')->update([
+            'nama_bank'         => $request->nama_bank,
+            'rekening'          => $request->rekening,
+            'atas_nama'         => $request->atas_nama,
+            'biaya'             => $request->biaya,
+            'contact_person'    => $request->contact_person,
+            'gambar'            => $imageName,
+        ]);
+
+        if ($update) {
+            return redirect()->back()->with([
+                'status'    => 'success',
+                'message' => 'Berhasil update data',
+            ]);
+        } else {
+            return redirect()->back()->with([
+                'status'    => 'warning',
+                'message' => 'Gagal update data',
+            ]);
+        }
     }
 }

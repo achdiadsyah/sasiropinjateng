@@ -1,5 +1,9 @@
 @extends('layouts.app')
 
+@php
+    $config = App\Models\AppConfig::first();
+@endphp
+
 @section('content')
 <div class="row">
     <div class="col-md-7">
@@ -33,9 +37,16 @@
                         <input type="email" name="email" class="form-control" required>
                     </div>
 
+                    
                     <div class="form-group">
                         <label>Nomor STR</label>
-                        <input type="number" name="nomor_str" class="form-control" maxlength="17" placeholder="xxxxxxxxx-xxxxxxx" required>
+                        <div class="input-group">
+                            <input type="number" class="form-control" placeholder="9 Digit" name="nomor_str9" maxlength = "9" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" required>
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">-</span>
+                            </div>
+                            <input type="number" class="form-control" placeholder="7 Digit" name="nomor_str7" maxlength = "7" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" required>
+                        </div>
                     </div>
 
                     <div class="form-group">
@@ -90,15 +101,15 @@
                 <h5 class="m-0 font-weight-bold text-primary">Informasi</h5>
             </div>
             <div class="card-body">
-                <img src="{{asset('assets/img/Flyer.png')}}" alt="" width="100%">
+                <img src="{{asset('images/'.$config->gambar)}}" alt="" width="100%">
             </div>
             <div class="card-body">
                 <ol>
-                    <li>Biaya Pendaftaran sebesar Rp. 300.000 / Hari Seminar</li>
-                    <li>Biaya pendaftaran di transfer ke rekening BCA
+                    <li>Biaya Pendaftaran sebesar Rp. {{number_format($config->biaya)}} / Hari Seminar</li>
+                    <li>Biaya pendaftaran di transfer ke rekening {{$config->nama_bank}}
                         <ul>
-                            <li>Bank BCA Atas Nama : IDA FARIDA</li>
-                            <li>Nomor Rekening : 8030665351</li>
+                            <li>Bank {{$config->nama_bank}} Atas Nama : {{$config->atas_nama}}</li>
+                            <li>Nomor Rekening : {{$config->rekening}}</li>
                             <li>Berita Transfer : IROPIN-[3 Digit Kode Unik]</li>
                             <li>Harap Transfer sesuai nominal yang telah di sebutkan dan jangan di bulatkan</li>
                         </ul>
@@ -108,7 +119,7 @@
                     </li>
                 </ol>
                 <div class="text-center">
-                    <a href="https://api.whatsapp.com/send/?phone=6281353214718&text&type=phone_number&app_absent=0"  target="_blank" class="btn btn-lg btn-success">
+                    <a href="https://api.whatsapp.com/send/?phone={{$config->contact_person}}&text&type=phone_number&app_absent=0"  target="_blank" class="btn btn-lg btn-success">
                         <i class="fab fa-whatsapp"></i> Whatsapp
                     </a>
                 </div>
@@ -127,9 +138,9 @@
                 <ol>
                     <li>Segera lakukan transfer ke Rekening
                         <ul>
-                            <li><b>Bank BCA</b></li>
-                            <li>A/N : <b>IDA FARIDA</b></li>
-                            <li>No Rek : <b>8030665351</b></li>
+                            <li><b>Bank {{$config->nama_bank}}</b></li>
+                            <li>A/N : <b>{{$config->atas_nama}}</b></li>
+                            <li>No Rek : <b>{{$config->rekening}}</b></li>
                             <li>Total : <b>{{session('biaya')}}</b></li>
                             <li>Berita Transfer : <b>IROPIN-{{session('kode_unik')}}</b></li>
                         </ul>

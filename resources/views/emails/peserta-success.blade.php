@@ -206,7 +206,9 @@ table, td { color: #000000; } </style>
   </div>
 </div>
 
-
+@php
+$config = App\Models\AppConfig::first();
+@endphp
 
 <div class="u-row-container" style="padding: 0px;background-color: transparent">
   <div class="u-row" style="Margin: 0 auto;min-width: 320px;max-width: 500px;overflow-wrap: break-word;word-wrap: break-word;word-break: break-word;background-color: transparent;">
@@ -228,9 +230,9 @@ table, td { color: #000000; } </style>
             <ol>
                 <li>Lakukan Transfer ke rekening :
                     <ul>
-                        <li>Rekening <b>Bank BCA</b></li>
-                        <li>A/N : IDA FARIDA</li>
-                        <li>No Rekening : 8030665351</li>
+                        <li>Rekening <b>Bank {{$config->nama_bank}}</b></li>
+                        <li>A/N : {{$config->atas_nama}}</li>
+                        <li>No Rekening : {{$config->rekening}}</li>
                         <li>Total : Rp. {{number_format($mailData['biaya'])}}</li>
                         <li>Berita Transfer : IROPIN-{{$mailData['kode_unik']}}</li>
                     </ul>
