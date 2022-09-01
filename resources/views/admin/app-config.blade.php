@@ -59,7 +59,8 @@
                                 </div>
                                 <div class="form-group">
                                     <label>Gambar Depan</label>
-                                    <input type="file" name="gambar" class="form-control">
+                                    <input type="file" name="gambar" class="form-control" accept="image/*">
+                                    <small class="text-muted">Allowed : JPG, JPEG, PNG | Max : 2MB</small>
                                 </div>
                             </div>
                             <div class="col-12 mt-3">
