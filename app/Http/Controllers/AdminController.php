@@ -157,13 +157,7 @@ class AdminController extends Controller
             'gambar' => 'required|image|mimes:jpeg,png,jpg|max:2048',
         ]);
 
-        $imageName = time().'.'.$request->gambar->extension();  
-     
-        $request->gambar->move(public_path('images'), $imageName);
-        
-        if(AppConfig::first()->gambar) {
-            unlink("images/".AppConfig::first()->gambar);
-        }
+        $image_path = $request->file('gambar')->store('gambar', 'public');
         
         $update = AppConfig::where('id', '1')->update([
             'nama_bank'         => $request->nama_bank,
@@ -171,7 +165,7 @@ class AdminController extends Controller
             'atas_nama'         => $request->atas_nama,
             'biaya'             => $request->biaya,
             'contact_person'    => $request->contact_person,
-            'gambar'            => $imageName,
+            'gambar'            => $image_path,
         ]);
 
         if ($update) {

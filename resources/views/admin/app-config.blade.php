@@ -45,7 +45,7 @@
                             </div>
                             <div class="col-6">
                                 <div class="text-center">
-                                    <img src="{{asset('images/'.$config->gambar)}}" alt="" width="50%">
+                                    <img src="{{asset('storage/'.$config->gambar)}}" alt="" width="50%">
                                 </div>
                                 <div class="form-group">
                                     <label>Gambar Depan</label>

@@ -33,3 +33,8 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::post('app-config-update', [App\Http\Controllers\AdminController::class, 'appConfigUpdate'])->name('app-config-update');
     });
 });
+
+Route::get('storage-link', function () {
+    Artisan::call('storage:link');
+    return "Done";
+});
