@@ -101,7 +101,7 @@
                 <h5 class="m-0 font-weight-bold text-primary">Informasi</h5>
             </div>
             <div class="card-body">
-                <img src="{{asset('storage/'.$config->gambar)}}" alt="" width="100%">
+                <img src="{{asset('images/'.$config->gambar)}}" alt="" width="100%">
             </div>
             <div class="card-body">
                 <ol>
