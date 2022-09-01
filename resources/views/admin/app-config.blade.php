@@ -18,6 +18,16 @@
                         </button>
                     </div>
                     @endif
+                    @if ($errors->any())
+                        @foreach ($errors->all() as $error)
+                        <div class="alert alert-warning" role="alert">
+                            {{ $error }}
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        @endforeach
+                    @endif
                     <form action="{{route('admin.app-config-update')}}" method="post" id="appConfigForm" enctype="multipart/form-data">
                         @csrf
                         <div class="row">
