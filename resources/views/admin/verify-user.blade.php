@@ -19,7 +19,7 @@
                                     <td>Asal PENGDA</td>
                                     <td>Asal PENGCAB</td>
                                     <td>Jenis Seminar</td>
-                                    <td>Total Bayar</td>
+                                    <td>Biaya</td>
                                     <td>Aksi</td>
                                 </tr>
                             </thead>
