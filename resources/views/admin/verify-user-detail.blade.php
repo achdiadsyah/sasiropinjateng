@@ -51,7 +51,11 @@
                           @php
                               $config = App\Models\AppConfig::first();
                               $hari = substr($user->hari_seminar,0,1);
-                              $biaya = $config->biaya * $hari + $user->kode_unik;
+                              if($user->jenis_seminar == "online"){
+                                  $biaya = $config->biaya_online * $hari + $user->kode_unik;
+                              } else {
+                                  $biaya = $config->biaya_offline * $hari + $user->kode_unik;
+                              }
                           @endphp
                           <div class="form-group">
                               <label>Jumlah Bayar</label>

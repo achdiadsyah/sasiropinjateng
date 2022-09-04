@@ -36,7 +36,11 @@
                                     @php
                                         $config = App\Models\AppConfig::first();
                                         $hari = substr($item->hari_seminar,0,1);
-                                        $biaya = $config->biaya * $hari + $item->kode_unik;
+                                        if($item->jenis_seminar == "online"){
+                                            $biaya = $config->biaya_online * $hari + $item->kode_unik;
+                                        } else {
+                                            $biaya = $config->biaya_offline * $hari + $item->kode_unik;
+                                        }
                                     @endphp
                                     <tr>
                                         <td>#</td>

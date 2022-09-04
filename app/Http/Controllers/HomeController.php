@@ -37,19 +37,24 @@ class HomeController extends Controller
         $kode_unik = rand(100,999);
 
         $action = Peserta::create([
-            'nama'  => $request->nama,  
-            'email'  => $request->email,  
-            'nomor_str'  => $request->nomor_str9."-".$request->nomor_str7,  
+            'nama'          => $request->nama,  
+            'email'         => $request->email,  
+            'nomor_str'     => $request->nomor_str9."-".$request->nomor_str7,  
             'no_handphone'  => $request->no_handphone,  
-            'province_id'  => $request->province_id,  
-            'regencie_id'  => $request->regencie_id,  
-            'jenis_seminar'  => $request->jenis_seminar,  
+            'province_id'   => $request->province_id,  
+            'regencie_id'   => $request->regencie_id,  
+            'jenis_seminar' => $request->jenis_seminar,  
             'hari_seminar'  => $request->hari_seminar,
-            'kode_unik'  => $kode_unik,
-            'is_verified'   => 0
+            'kode_unik'     => $kode_unik,
+            'is_verified'   => 0,
         ]);
 
-        $harga = AppConfig::first()->biaya;
+        if($request->jenis_seminar == "online"){
+            $harga = AppConfig::first()->biaya_online;
+        } else if($request->jenis_seminar == "offline"){
+            $harga = AppConfig::first()->biaya_offline;
+        }
+        
         $hari = substr($request->hari_seminar,0,1);
         $biaya = $harga * $hari + $kode_unik;
 

@@ -45,10 +45,18 @@
                                     <input type="text" name="rekening" class="form-control" value="{{$config->rekening}}">
                                 </div>
                                 <div class="form-group">
-                                    <label>Biaya / Hari</label>
+                                    <label>Biaya OFFLINE / Hari</label>
                                     <div class="input-group mb-3">
                                         <span class="input-group-text" id="basic-addon1">Rp. </span>
-                                        <input type="text" name="biaya" class="form-control" value="{{$config->biaya}}">
+                                        <input type="text" name="biaya_offline" class="form-control" value="{{$config->biaya_offline}}">
+                                        <span class="input-group-text" id="basic-addon1">per Hari</span>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label>Biaya ONLINE / Hari</label>
+                                    <div class="input-group mb-3">
+                                        <span class="input-group-text" id="basic-addon1">Rp. </span>
+                                        <input type="text" name="biaya_online" class="form-control" value="{{$config->biaya_online}}">
                                         <span class="input-group-text" id="basic-addon1">per Hari</span>
                                     </div>
                                 </div>

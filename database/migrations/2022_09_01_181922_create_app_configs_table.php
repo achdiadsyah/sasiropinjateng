@@ -18,7 +18,8 @@ return new class extends Migration
             $table->string('nama_bank')->nullable();
             $table->string('rekening')->nullable();
             $table->string('atas_nama')->nullable();
-            $table->string('biaya')->nullable();
+            $table->string('biaya_online')->nullable();
+            $table->string('biaya_offline')->nullable();
             $table->string('gambar')->nullable();
             $table->string('contact_person')->nullable();
         });

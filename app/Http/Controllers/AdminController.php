@@ -165,7 +165,8 @@ class AdminController extends Controller
             'nama_bank'         => $request->nama_bank,
             'rekening'          => $request->rekening,
             'atas_nama'         => $request->atas_nama,
-            'biaya'             => $request->biaya,
+            'biaya_online'      => $request->biaya_online,
+            'biaya_offline'     => $request->biaya_offline,
             'contact_person'    => $request->contact_person,
             'gambar'            => $imageName,
         ]);

@@ -35,7 +35,8 @@ class DatabaseSeeder extends Seeder
             'nama_bank'         => 'BCA',
             'atas_nama'         => 'IDA FARIDA',
             'rekening'          => '8030665351',
-            'biaya'             => '300000',
+            'biaya_online'      => '100000',
+            'biaya_offline'     => '300000',
             'gambar'            => '',
             'contact_person'    => '6281353214718',
         ]);

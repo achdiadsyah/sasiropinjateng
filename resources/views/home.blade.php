@@ -105,7 +105,8 @@
             </div>
             <div class="card-body">
                 <ol>
-                    <li>Biaya Pendaftaran sebesar Rp. {{number_format($config->biaya)}} / Hari Seminar</li>
+                    <li>Biaya Pendaftaran sebesar Rp. {{number_format($config->biaya_online)}} / Hari Seminar [ONLINE]</li>
+                    <li>Biaya Pendaftaran sebesar Rp. {{number_format($config->biaya_offline)}} / Hari Seminar [OFFLINE]</li>
                     <li>Biaya pendaftaran di transfer ke rekening {{$config->nama_bank}}
                         <ul>
                             <li>Bank {{$config->nama_bank}} Atas Nama : {{$config->atas_nama}}</li>
