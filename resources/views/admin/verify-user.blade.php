@@ -16,8 +16,8 @@
                                     <td>Nama</td>
                                     <td>Email</td>
                                     <td>No Telepon</td>
-                                    <td>Asal Pengda</td>
-                                    <td>Asal Pengcab</td>
+                                    <td>Asal PENGDA</td>
+                                    <td>Asal PENGCAB</td>
                                     <td>Jenis Seminar</td>
                                     <td>Total Bayar</td>
                                     <td>Aksi</td>
