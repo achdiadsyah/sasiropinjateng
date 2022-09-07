@@ -10,8 +10,8 @@
                         <div class="text-md font-weight-bold text-primary text-uppercase mb-1">
                             Pendaftar Baru
                         </div>
-                        <h3>{{$count_new}} User</h3>
-                        <a href="{{route('admin.new-user')}}" class="btn btn-sm btn-primary">See All</a>
+                        <h3>{{$count_new}} Peserta</h3>
+                        <a href="{{route('admin.new-user')}}" class="btn btn-sm btn-primary">Lihat Semua</a>
                     </div>
                     <div class="col-auto mr-2 mr-2">
                         <i class="fas fa-users fa-2x text-gray-300"></i>
@@ -28,8 +28,8 @@
                         <div class="text-md font-weight-bold text-primary text-uppercase mb-1">
                             Sudah Verifikasi Pembayaran
                         </div>
-                        <h3>{{$count_verified}} User</h3>
-                        <a href="{{route('admin.verified-user')}}" class="btn btn-sm btn-primary">See All</a>
+                        <h3>{{$count_verified}} Peserta</h3>
+                        <a href="{{route('admin.verified-user')}}" class="btn btn-sm btn-primary">Lihat Semua</a>
                     </div>
                     <div class="col-auto mr-2 mr-2">
                         <i class="fas fa-users fa-2x text-gray-300"></i>

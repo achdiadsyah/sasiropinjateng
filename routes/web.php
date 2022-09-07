@@ -24,6 +24,7 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::get('new-user', [App\Http\Controllers\AdminController::class, 'newUser'])->name('new-user');
         Route::post('delete', [App\Http\Controllers\AdminController::class, 'doDelete'])->name('delete');
         Route::post('verify', [App\Http\Controllers\AdminController::class, 'doVerify'])->name('verify');
+        Route::post('updateUser', [App\Http\Controllers\AdminController::class, 'updateUser'])->name('update-user');
 
         Route::get('verified-user', [App\Http\Controllers\AdminController::class, 'verifiedUser'])->name('verified-user');
 

@@ -22,6 +22,7 @@ return new class extends Migration
             $table->string('biaya_offline')->nullable();
             $table->string('gambar')->nullable();
             $table->string('contact_person')->nullable();
+            $table->longText('keterangan')->nullable();
         });
     }
 

@@ -11,7 +11,7 @@
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
     <link href="{{asset('assets/vendor/fontawesome-free/css/all.min.css')}}" rel="stylesheet" type="text/css">
     <link href="{{asset('assets/vendor/datatables/dataTables.bootstrap4.min.css')}}" rel="stylesheet">
-    <link href="{{asset('assets/css/sb-admin-2.min.css')}}" rel="stylesheet">
+    <link href="{{asset('assets/css/sb-admin-2.css')}}" rel="stylesheet">
 
     <link rel="icon" type="image/x-icon" href="{{asset('assets/img/logo.png')}}">
 

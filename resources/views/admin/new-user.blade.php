@@ -5,7 +5,7 @@
         <div class="col-12">
             <div class="card">
                 <div class="card-header">
-                    New Users
+                    Pendaftar Baru
                 </div>
                 <div class="card-body">
                     @if (session('status'))

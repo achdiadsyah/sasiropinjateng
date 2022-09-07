@@ -18,5 +18,6 @@ class AppConfig extends Model
         'biaya',
         'gambar',
         'contact_person',
+        'keterangan',
     ];
 }

@@ -72,6 +72,26 @@ class AdminController extends Controller
         }
     }
 
+    public function updateUser(Request $request)
+    {
+        if($request->id){
+            $update = Peserta::where('id', $request->id)->update([
+                'nama'  => $request->nama,
+                'nomor_str'  => $request->nomor_str,
+            ]);
+
+            return redirect()->back()->with([
+                'status'    => 'success',
+                'message' => 'Berhasil merubah data peserta',
+            ]);
+        }
+
+        return redirect()->back()->with([
+            'status'    => 'warning',
+            'message' => 'Gagal merubah data peserta',
+        ]);
+    }
+
     public function doVerify(Request $request)
     {
         $check = Peserta::findOrFail($request->id);
@@ -153,13 +173,15 @@ class AdminController extends Controller
 
     public function appConfigUpdate(Request $request)
     {
-        $request->validate([
-            'gambar' => 'required|image|mimes:jpeg,png,jpg|max:2048',
-        ]);
+        $imageName = '';
+        if($request->hasFile('gambar')){
+            $request->validate([
+                'gambar' => 'image|mimes:jpeg,png,jpg|max:2048',
+            ]);
+            $imageName = time().'.'.$request->gambar->extension();  
+            $request->gambar->move(public_path('images'), $imageName);
+        }
 
-        $imageName = time().'.'.$request->gambar->extension();  
-     
-        $request->gambar->move(public_path('images'), $imageName);
         
         $update = AppConfig::where('id', '1')->update([
             'nama_bank'         => $request->nama_bank,
@@ -168,7 +190,8 @@ class AdminController extends Controller
             'biaya_online'      => $request->biaya_online,
             'biaya_offline'     => $request->biaya_offline,
             'contact_person'    => $request->contact_person,
-            'gambar'            => $imageName,
+            'gambar'            => $imageName ? $imageName : $request->gambar_lama,
+            'keterangan'        => $request->keterangan ? $request->keterangan : NULL
         ]);
 
         if ($update) {

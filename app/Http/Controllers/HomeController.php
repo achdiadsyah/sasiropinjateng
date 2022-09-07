@@ -7,6 +7,7 @@ use App\Models\Province;
 use App\Models\Regencie;
 use App\Models\Peserta;
 use App\Models\AppConfig;
+use Illuminate\Support\Facades\Validator;
 
 use Mail;
 use App\Mail\NotifyPesertaBerhasil;
@@ -25,12 +26,40 @@ class HomeController extends Controller
 
     public function saveData(Request $request)
     {
+        $validated = Validator::make($request->all(), [
+            'nama' => ['required', 'string'],
+            'email' => ['required', 'email'],
+            'nomor_str9' => ['required', 'string', 'min:9'],
+            'nomor_str7' => ['required', 'string', 'min:7'],
+            'no_handphone' => ['required', 'string', 'min:10'],
+            'province_id' => ['required'],
+            'jenis_seminar' => ['required'],
+            'hari_seminar' => ['required'],
+        ]);
+        
+        if ($validated->fails()) {
+            return redirect()->back()
+                ->withErrors($validated)
+                ->withInput();
+        }
+
         $check = Peserta::where('email', $request->email)->first();
 
         if($check) {
             return redirect()->back()->with([
                 'status'    => 'warning',
                 'message' => 'Gagal Mendaftar, email sudah pernah di daftarkan',
+            ]);
+        }
+
+        $nomorSTR = $request->nomor_str9."-".$request->nomor_str7;
+
+        $check2 = Peserta::where('nomor_str', $nomorSTR)->first();
+
+        if($check2) {
+            return redirect()->back()->with([
+                'status'    => 'warning',
+                'message' => 'Gagal Mendaftar, nomor STR sudah pernah di daftarkan',
             ]);
         }
 

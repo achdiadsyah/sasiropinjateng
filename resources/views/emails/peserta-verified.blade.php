@@ -96,7 +96,9 @@ table, td { color: #000000; } </style>
     <td style="word-break: break-word;border-collapse: collapse !important;vertical-align: top">
     <!--[if (mso)|(IE)]><table width="100%" cellpadding="0" cellspacing="0" border="0"><tr><td align="center" style="background-color: transparent;"><![endif]-->
     
-
+@php
+$config = App\Models\AppConfig::first();
+@endphp
 <div class="u-row-container" style="padding: 0px;background-color: transparent">
   <div class="u-row" style="Margin: 0 auto;min-width: 320px;max-width: 500px;overflow-wrap: break-word;word-wrap: break-word;word-break: break-word;background-color: transparent;">
     <div style="border-collapse: collapse;display: table;width: 100%;height: 100%;background-color: transparent;">
@@ -152,11 +154,18 @@ table, td { color: #000000; } </style>
   <tbody>
     <tr>
       <td style="overflow-wrap:break-word;word-break:break-word;padding:10px;font-family:arial,helvetica,sans-serif;" align="left">
-        
-  <h1 style="margin: 0px; line-height: 140%; text-align: center; word-wrap: break-word; font-weight: normal; font-family: arial,helvetica,sans-serif; font-size: 22px;">
-    Selamat, Pembayaran anda berhasil kami konfirmasi. <br>Hubungi kami untuk info lebih lanjut
-  </h1>
-
+        <h1 style="margin: 0px; line-height: 140%; text-align: center; word-wrap: break-word; font-weight: normal; font-family: arial,helvetica,sans-serif; font-size: 22px;">
+          Selamat, Pembayaran anda berhasil kami konfirmasi.
+        </h1>
+        <br>
+      </td>
+    </tr>
+    <tr>
+      <td style="background: #f8f8f8b7; padding: 10px;">
+        <h3>Keterangan :</h3>
+        <div style="margin-left: 10px;">
+          {!! $config->keterangan !!}
+        </div>
       </td>
     </tr>
   </tbody>
@@ -224,7 +233,9 @@ table, td { color: #000000; } </style>
         
   <div style="line-height: 140%; text-align: left; word-wrap: break-word;">
     <p style="font-size: 14px; line-height: 140%; text-align: center;"><em>Best Regard</em></p>
-<p style="font-size: 14px; line-height: 140%; text-align: center;"><strong><em>IROPIN - JAWA TENGAH</em></strong></p>
+    <p style="font-size: 14px; line-height: 140%; text-align: center;"><strong><em>IROPIN - JAWA TENGAH</em></strong></p>
+    <hr>
+    <p style="font-size: 15px; line-height: 160%; text-align: center;"><strong><a href="http://wa.me/{{$config->contact_person}}" target="_blank">MORE INFO</a></strong></p>
   </div>
 
       </td>

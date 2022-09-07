@@ -5,7 +5,7 @@
         <div class="col-12">
             <div class="card">
                 <div class="card-header">
-                    Verified Users
+                    Sudah Verifikasi
                 </div>
                 <div class="card-body">
                     <div class="table-responsive">

@@ -2,6 +2,9 @@
 @php
     $config = App\Models\AppConfig::first();
 @endphp
+@push('head-script')
+<link rel="stylesheet" href="{{asset('assets/vendor/richtext/richtext.min.css')}}">
+@endpush
 @section('content')
     <div class="row">
         <div class="col-12">
@@ -30,6 +33,7 @@
                     @endif
                     <form action="{{route('admin.app-config-update')}}" method="post" id="appConfigForm" enctype="multipart/form-data">
                         @csrf
+                        <input type="hidden" name="gambar_lama" value="{{$config->gambar}}">
                         <div class="row">
                             <div class="col-6">
                                 <div class="form-group">
@@ -78,6 +82,12 @@
                                     <small class="text-muted">Allowed : JPG, JPEG, PNG | Max : 2MB</small>
                                 </div>
                             </div>
+                            <div class="col-12">
+                                <div class="form-group">
+                                    <label for="">Keterangan sukses daftar</label>
+                                    <textarea name="keterangan" id="keterangan" rows="25"  class="form-control contentarea">{{$config->keterangan}}</textarea>
+                                </div>
+                            </div>
                             <div class="col-12 mt-3">
                                 <div class="text-center">
                                     <button type="submit" class="btn btn-primary" onClick="$('#appConfigForm').submit(); this.disabled = true; this.innerText ='Trying to update...';">Save Update</button>
@@ -90,3 +100,68 @@
         </div>
     </div>
 @endsection
+
+@push('foot-script')
+<script src="{{asset('assets/vendor/richtext/jquery.richtext.min.js')}}"></script>
+<script>
+    $(document).ready(function() {
+        $('.contentarea').richText({
+            // text formatting
+            bold: true,
+            italic: true,
+            underline: true,
+
+            // text alignment
+            leftAlign: false,
+            centerAlign: false,
+            rightAlign: false,
+            justify: false,
+
+            // lists
+            ol: true,
+            ul: true,
+
+            // title
+            heading: true,
+
+            // fonts
+            fonts: false,
+            fontColor: false,
+            fontSize: false,
+
+            // uploads
+            imageUpload: false,
+            fileUpload: false,
+
+            // link
+            urls: true,
+            addVideo: false,
+            
+            // tables
+            table: false,
+
+            // code
+            removeStyles: false,
+            code: false,
+
+            // preview
+            preview: false,
+
+            // dev settings
+            useSingleQuotes: false,
+            height: 500,
+            heightPercentage: 0,
+            id: "",
+            class: "",
+            useParagraph: false,
+            maxlength: 0,
+            useTabForNext: false,
+
+            // callback function after init
+            callback: undefined,
+
+        });
+    });
+</script>
+    
+@endpush

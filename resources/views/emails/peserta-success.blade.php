@@ -235,6 +235,7 @@ $config = App\Models\AppConfig::first();
                         <li>No Rekening : {{$config->rekening}}</li>
                         <li>Total : Rp. {{number_format($mailData['biaya'])}}</li>
                         <li>Berita Transfer : IROPIN-{{$mailData['kode_unik']}}</li>
+                        <li>Harap Transfer sesuai nominal yang telah di sebutkan dan jangan di bulatkan</li>
                     </ul>
                 </li>
                 <li>Pastikan anda mentransfer uang tepat dengan jumlah yang telah di tentukan</li>
@@ -275,7 +276,9 @@ $config = App\Models\AppConfig::first();
         
   <div style="line-height: 140%; text-align: left; word-wrap: break-word;">
     <p style="font-size: 14px; line-height: 140%; text-align: center;"><em>Best Regard</em></p>
-<p style="font-size: 14px; line-height: 140%; text-align: center;"><strong><em>IROPIN - JAWA TENGAH</em></strong></p>
+    <p style="font-size: 14px; line-height: 140%; text-align: center;"><strong><em>IROPIN - JAWA TENGAH</em></strong></p>
+    <hr>
+    <p style="font-size: 15px; line-height: 160%; text-align: center;"><strong><a href="http://wa.me/{{$config->contact_person}}" target="_blank">MORE INFO</a></strong></p>
   </div>
 
       </td>
