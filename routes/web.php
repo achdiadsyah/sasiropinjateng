@@ -22,7 +22,8 @@ Route::prefix('admin')->name('admin.')->group(function () {
     Route::middleware(['auth'])->group(function () {
         Route::get('dashboard', [App\Http\Controllers\AdminController::class, 'dashboard'])->name('dashboard');
         Route::get('new-user', [App\Http\Controllers\AdminController::class, 'newUser'])->name('new-user');
-        Route::post('delete', [App\Http\Controllers\AdminController::class, 'doDelete'])->name('delete');
+        Route::post('delete-user', [App\Http\Controllers\AdminController::class, 'doDeleteUser'])->name('delete-user');
+        Route::post('delete-verify', [App\Http\Controllers\AdminController::class, 'doDeleteVerify'])->name('delete-verify');
         Route::post('verify', [App\Http\Controllers\AdminController::class, 'doVerify'])->name('verify');
         Route::post('updateUser', [App\Http\Controllers\AdminController::class, 'updateUser'])->name('update-user');
 

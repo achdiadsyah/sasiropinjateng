@@ -120,7 +120,7 @@ class AdminController extends Controller
         }
     }
 
-    public function doDelete(Request $request)
+    public function doDeleteUser(Request $request)
     {
         $check = Peserta::findOrFail($request->id);
 
@@ -132,6 +132,24 @@ class AdminController extends Controller
             ]);
         } else {
             return redirect()->route('admin.new-user')->with([
+                'status'    => 'warning',
+                'message' => 'Gagal Menghapus users',
+            ]);
+        }
+    }
+
+    public function doDeleteVerify(Request $request)
+    {
+        $check = Peserta::findOrFail($request->id);
+
+        if($check){
+            Peserta::where('id', $request->id)->delete();
+            return redirect()->route('admin.verified-user')->with([
+                'status'    => 'success',
+                'message' => 'Berhasil Menghapus users',
+            ]);
+        } else {
+            return redirect()->route('admin.verified-user')->with([
                 'status'    => 'warning',
                 'message' => 'Gagal Menghapus users',
             ]);

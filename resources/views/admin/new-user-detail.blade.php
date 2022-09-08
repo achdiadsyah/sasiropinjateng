@@ -112,7 +112,7 @@
 
     <div class="modal fade" id="modalDelete" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
-            <form id="delete-form" action="{{ route('admin.delete') }}" method="POST">
+            <form id="delete-form" action="{{ route('admin.delete-user') }}" method="POST">
                 @csrf
                 <input type="hidden" value="{{$user->id}}" name="id" required>
                 <div class="modal-content">

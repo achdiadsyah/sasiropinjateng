@@ -48,35 +48,39 @@
                           </div>
                       </div>
                       <div class="col-6">
-                          <div class="form-group">
-                            <label>Jenis Seminar</label>
-                            <input type="text" value="{{strtoupper($user->jenis_seminar)}}" class="form-control" disabled>
-                          </div>
-                          <div class="form-group">
-                            <label>Jadwal Seminar</label>
-                            <input type="text" value="{{$user->hari_seminar}}" class="form-control" disabled>
-                          </div>
-                          <div class="form-group">
-                            <label>Kode Unik</label>
-                            <input type="text" value="{{$user->kode_unik}}" class="form-control" disabled>
-                          </div>
-                          @php
-                              $config = App\Models\AppConfig::first();
-                              $hari = substr($user->hari_seminar,0,1);
-                              if($user->jenis_seminar == "online"){
-                                  $biaya = $config->biaya_online * $hari + $user->kode_unik;
-                              } else {
-                                  $biaya = $config->biaya_offline * $hari + $user->kode_unik;
-                              }
-                          @endphp
-                          <div class="form-group">
-                              <label>Jumlah Bayar</label>
-                              <input type="text" value="Rp. {{number_format($biaya)}}" class="form-control" disabled>
-                          </div>
-                          <a class="btn btn-info" data-toggle="modal" data-target="#modalUpdate">
-                              <i class="fas fa-pen fa-sm fa-fw mr-2 text-gray-400"></i>
-                              Update Data
-                          </a>
+                            <div class="form-group">
+                                <label>Jenis Seminar</label>
+                                <input type="text" value="{{strtoupper($user->jenis_seminar)}}" class="form-control" disabled>
+                            </div>
+                            <div class="form-group">
+                                <label>Jadwal Seminar</label>
+                                <input type="text" value="{{$user->hari_seminar}}" class="form-control" disabled>
+                            </div>
+                            <div class="form-group">
+                                <label>Kode Unik</label>
+                                <input type="text" value="{{$user->kode_unik}}" class="form-control" disabled>
+                            </div>
+                            @php
+                                $config = App\Models\AppConfig::first();
+                                $hari = substr($user->hari_seminar,0,1);
+                                if($user->jenis_seminar == "online"){
+                                    $biaya = $config->biaya_online * $hari + $user->kode_unik;
+                                } else {
+                                    $biaya = $config->biaya_offline * $hari + $user->kode_unik;
+                                }
+                            @endphp
+                            <div class="form-group">
+                                <label>Jumlah Bayar</label>
+                                <input type="text" value="Rp. {{number_format($biaya)}}" class="form-control" disabled>
+                            </div>
+                            <a class="btn btn-info" data-toggle="modal" data-target="#modalUpdate">
+                                <i class="fas fa-pen fa-sm fa-fw mr-2 text-gray-400"></i>
+                                Update Data
+                            </a>
+                            <a class="btn btn-danger" href="#" data-toggle="modal" data-target="#modalDelete">
+                                <i class="fas fa-trash fa-sm fa-fw mr-2 text-gray-400"></i>
+                                Delete Peserta
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -99,6 +103,28 @@
                     <button class="btn btn-danger" type="submit" name="btnYesUpdate" onClick="$('#update-form').submit(); btnYesUpdate.disabled = true;  btnCancelUpdate.disabled = true; btnYesUpdate.innerText ='Trying to update...';">Update</button>
                 </div>
             </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="modalDelete" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <form id="delete-form" action="{{ route('admin.delete-verify') }}" method="POST">
+                @csrf
+                <input type="hidden" value="{{$user->id}}" name="id" required>
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Yakin ingin menghapus user ini?</h5>
+                        <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">×</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">Tekan "Delete" dibawah ini jika anda ingin menghapus peserta.</div>
+                    <div class="modal-footer">
+                        <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                        <button class="btn btn-danger" type="submit">Delete</button>
+                    </div>
+                </div>
+            </form>
         </div>
     </div>
 @endsection
