@@ -22,30 +22,30 @@
                           @csrf
                           <input type="hidden" name="id" value="{{$user->id}}" required>
                           <div class="form-group">
-                              <label>Nama</label>
-                              <input type="text" name="nama" value="{{$user->nama}}" class="form-control">
-                          </div>
-                          <div class="form-group">
-                              <label>Email</label>
-                              <input type="text" value="{{$user->email}}" class="form-control" disabled>
-                          </div>
-                          <div class="form-group">
-                              <label>Nomor STR</label>
-                              <input type="text" name="nomor_str" value="{{$user->nomor_str}}" class="form-control">
-                          </div>
-                          </form>
-                          <div class="form-group">
+                            <label>Nama</label>
+                            <input type="text" name="nama" value="{{$user->nama}}" class="form-control">
+                            </div>
+                            <div class="form-group">
+                                <label>Email</label>
+                                <input type="text" name="email" value="{{$user->email}}" class="form-control">
+                            </div>
+                            <div class="form-group">
+                                <label>Nomor STR</label>
+                                <input type="text" name="nomor_str" value="{{$user->nomor_str}}" class="form-control">
+                            </div>
+                            </form>
+                            <div class="form-group">
                             <label>Nomor Handphone</label>
-                            <input type="text" value="{{$user->no_handphone}}" class="form-control" disabled>
-                          </div>
-                          <div class="form-group">
-                            <label>Asal Pengda</label>
-                            <input type="text" value="{{$user->province->name}}" class="form-control" disabled>
-                          </div>
-                          <div class="form-group">
-                            <label>Asal Pengcab</label>
-                            <input type="text" value="{{$user->regencie ? $user->regencie->name : '-'}}" class="form-control" disabled>
-                          </div>
+                            <input type="text" name="no_handphone" value="{{$user->no_handphone}}" class="form-control">
+                            </div>
+                            <div class="form-group">
+                                <label>Asal Pengda</label>
+                                <input type="text" value="{{$user->province->name}}" class="form-control" disabled>
+                            </div>
+                            <div class="form-group">
+                                <label>Asal Pengcab</label>
+                                <input type="text" value="{{$user->regencie ? $user->regencie->name : '-'}}" class="form-control" disabled>
+                            </div>
                       </div>
                       <div class="col-6">
                             <div class="form-group">

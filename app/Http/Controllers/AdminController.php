@@ -77,6 +77,8 @@ class AdminController extends Controller
         if($request->id){
             $update = Peserta::where('id', $request->id)->update([
                 'nama'  => $request->nama,
+                'email' => $request->email,
+                'no_handphone' => $request->no_handphone,
                 'nomor_str'  => $request->nomor_str,
             ]);
 

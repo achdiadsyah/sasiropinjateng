@@ -27,7 +27,7 @@
                             </div>
                             <div class="form-group">
                                 <label>Email</label>
-                                <input type="text" value="{{$user->email}}" class="form-control" disabled>
+                                <input type="text" name="email" value="{{$user->email}}" class="form-control">
                             </div>
                             <div class="form-group">
                                 <label>Nomor STR</label>
@@ -36,7 +36,7 @@
                             </form>
                             <div class="form-group">
                               <label>Nomor Handphone</label>
-                              <input type="text" value="{{$user->no_handphone}}" class="form-control" disabled>
+                              <input type="text" name="no_handphone" value="{{$user->no_handphone}}" class="form-control">
                             </div>
                             <div class="form-group">
                               <label>Asal Pengda</label>
