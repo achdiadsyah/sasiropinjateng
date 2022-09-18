@@ -19,33 +19,37 @@
                     <div class="row">
                         <div class="col-6">
                             <form action="{{route('admin.update-user')}}" id="update-form" method="post">
-                            @csrf
-                            <input type="hidden" name="id" value="{{$user->id}}" required>
-                            <div class="form-group">
-                                <label>Nama</label>
-                                <input type="text" name="nama" value="{{$user->nama}}" class="form-control">
-                            </div>
-                            <div class="form-group">
-                                <label>Email</label>
-                                <input type="text" name="email" value="{{$user->email}}" class="form-control">
-                            </div>
-                            <div class="form-group">
-                                <label>Nomor STR</label>
-                                <input type="text" name="nomor_str" value="{{$user->nomor_str}}" class="form-control">
-                            </div>
+                                @csrf
+                                <input type="hidden" name="id" value="{{$user->id}}" required>
+                                <div class="form-group">
+                                    <label>Nama</label>
+                                    <input type="text" name="nama" value="{{$user->nama}}" class="form-control">
+                                </div>
+                                <div class="form-group">
+                                    <label>Email</label>
+                                    <input type="text" name="email" value="{{$user->email}}" class="form-control">
+                                </div>
+                                <div class="form-group">
+                                    <label>Nomor STR</label>
+                                    <input type="text" name="nomor_str" value="{{$user->nomor_str}}" class="form-control">
+                                </div>
+                                <div class="form-group">
+                                    <label>Nomor Handphone</label>
+                                    <input type="number" name="no_handphone" value="{{$user->no_handphone}}" class="form-control">
+                                </div>
+                                <div class="form-group">
+                                    <label>Asal Pengda</label>
+                                    <select name="province_id" id="provinsi" class="form-control" required>
+                                        
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label>Asal Pengcab</label>
+                                    <select name="regencie_id" id="kabupaten" class="form-control" required>
+                                        
+                                    </select>
+                                </div>
                             </form>
-                            <div class="form-group">
-                              <label>Nomor Handphone</label>
-                              <input type="text" name="no_handphone" value="{{$user->no_handphone}}" class="form-control">
-                            </div>
-                            <div class="form-group">
-                              <label>Asal Pengda</label>
-                              <input type="text" value="{{$user->province->name}}" class="form-control" disabled>
-                            </div>
-                            <div class="form-group">
-                              <label>Asal Pengcab</label>
-                              <input type="text" value="{{$user->regencie ? $user->regencie->name : '-'}}" class="form-control" disabled>
-                            </div>
                         </div>
                         <div class="col-6">
                             <div class="form-group">
@@ -154,3 +158,68 @@
         </div>
     </div>
 @endsection
+
+@push('foot-script')
+<script>
+    $(document).ready(function (){
+        getProvince();
+    });
+
+    function getProvince()
+    {
+        var selected_province = "{{$user->province_id}}";
+        var prov_opt = "";
+        $.ajax({                                      
+            url: '/getprovince',              
+            type: "get",
+            success: function(res) {
+                getRegency(selected_province);
+                if (res) {
+                    prov_opt += `<option value="">--Silahkan Pilih--</option>`;
+                    $.each( res, function( key, value ) {
+                        if(selected_province == value.id){
+                            prov_opt += `<option value="${value.id}" selected>${value.name}</option>`;
+                        } else {
+                            prov_opt += `<option value="${value.id}">${value.name}</option>`;
+                        }
+                    });
+                    $('#provinsi').html(prov_opt);
+                }
+            }
+        });
+    }
+
+    function getRegency(prov_id)
+    {
+        var selected_regencie = "{{$user->regencie_id}}";
+        var kab_opt = "";
+        $.ajax({                                      
+            url: '/getregency',
+            data: 'province_id='+prov_id,
+            type: "get",
+            success: function(res) {
+                if (res) {
+                    $('#group_kabupaten').removeClass('d-none');
+                    kab_opt += `<option value="">--Silahkan Pilih--</option>`;
+                    kab_opt += `<option value="">--TANPA PENGCAB--</option>`;
+                    $.each( res, function( key, value ) {
+                        if(selected_regencie == value.id){
+                            kab_opt += `<option value="${value.id}" selected>${value.name}</option>`;
+                        } else {
+                            kab_opt += `<option value="${value.id}">${value.name}</option>`;
+                        }
+                        
+                    });
+                    $('#kabupaten').html(kab_opt);
+                }
+            }
+        })
+    }
+
+    $( "#provinsi" ).change(function() {
+        var prov_id = $(this).val();
+        getRegency(prov_id);
+    });
+
+</script>
+@endpush

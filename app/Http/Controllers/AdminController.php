@@ -48,8 +48,14 @@ class AdminController extends Controller
     public function dashboard(Request $request)
     {
         $data = [
-            'count_new' => Peserta::where('is_verified', 0)->count(),
-            'count_verified' => Peserta::where('is_verified', 1)->count(),
+            'count_new'                 => Peserta::where('is_verified', 0)->count(),
+            'count_verified'            => Peserta::where('is_verified', 1)->count(),
+
+            'count_new_online'          => Peserta::where(['is_verified' => 0, 'jenis_seminar' => 'online'])->count(),
+            'count_new_offline'         => Peserta::where(['is_verified' => 0, 'jenis_seminar' => 'offline'])->count(),
+
+            'count_verified_online'     => Peserta::where(['is_verified' => 1, 'jenis_seminar' => 'online'])->count(),
+            'count_verified_offline'    => Peserta::where(['is_verified' => 1, 'jenis_seminar' => 'offline'])->count(),
         ];
         return view('admin.dashboard', $data);
     }
@@ -59,7 +65,7 @@ class AdminController extends Controller
         if($request->id){
 
             $data = [
-                'user' => Peserta::findOrFail($request->id)
+                'user' => Peserta::findOrFail($request->id),
             ];
             return view('admin.new-user-detail', $data);
 
@@ -76,10 +82,12 @@ class AdminController extends Controller
     {
         if($request->id){
             $update = Peserta::where('id', $request->id)->update([
-                'nama'  => $request->nama,
-                'email' => $request->email,
-                'no_handphone' => $request->no_handphone,
-                'nomor_str'  => $request->nomor_str,
+                'nama'          => $request->nama,
+                'email'         => $request->email,
+                'no_handphone'  => $request->no_handphone,
+                'nomor_str'     => $request->nomor_str,
+                'province_id'   => $request->province_id,
+                'regencie_id'   => $request->regencie_id,
             ]);
 
             return redirect()->back()->with([

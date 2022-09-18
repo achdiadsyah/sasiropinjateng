@@ -11,6 +11,8 @@
                             Pendaftar Baru
                         </div>
                         <h3>{{$count_new}} Peserta</h3>
+                        <h5>Online : {{$count_new_online}}</h5>
+                        <h5>Offline : {{$count_new_offline}}</h5>
                         <a href="{{route('admin.new-user')}}" class="btn btn-sm btn-primary">Lihat Semua</a>
                     </div>
                     <div class="col-auto mr-2 mr-2">
@@ -29,6 +31,8 @@
                             Sudah Verifikasi Pembayaran
                         </div>
                         <h3>{{$count_verified}} Peserta</h3>
+                        <h5>Online : {{$count_verified_online}}</h5>
+                        <h5>Offline : {{$count_verified_offline}}</h5>
                         <a href="{{route('admin.verified-user')}}" class="btn btn-sm btn-primary">Lihat Semua</a>
                     </div>
                     <div class="col-auto mr-2 mr-2">
