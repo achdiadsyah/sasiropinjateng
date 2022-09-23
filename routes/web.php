@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Route;
 
 
 Route::get('/', function () {
-    return view('home');
+    return view('close');
 });
 
 Route::get('getprovince', [App\Http\Controllers\HomeController::class, 'province']);
